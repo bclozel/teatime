@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Est-ce que c'est l'heure du th&eacute;?</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+            padding-top: 20px;
+            padding-bottom: 40px;
+        }
+        .container-narrow {
+            margin: 0 auto;
+            max-width: 700px;
+        }
+        .container-narrow > hr {
+            margin: 30px 0;
+        }
+
+        .teatime {
+            margin: 60px 0;
+            text-align: center;
+        }
+        .teatime h1 {
+            font-size: 72px;
+            line-height: 1;
+        }
+    </style>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<div class="container-narrow">
+
+    <div class="teatime">
+        <noscript>
+            <h1>Pas de JavaScript, pas de th&eacute;</h1>
+        </noscript>
+        <h1 id="answer">Non</h1>
+        <p class="lead" id="message"></p>
+        <p class="lead" id="remainingtime">Prochain th&eacute; dans <strong>32 minutes</strong></p>
+    </div>
+
+    <div>
+        <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" viewBox="0 0 700 400" >
+            <defs xmlns="http://www.w3.org/2000/svg">
+                <style>
+                    @media (max-width: 480px) {
+                        .lefteye, .righteye, .hands{
+                            display:none;
+                        }
+                    }
+                </style>
+            </defs>
+            <g class="lefteye">
+                <circle id="locircle" style="stroke: black; fill: #000000;" cx="240" cy="130" r="114" />
+                <circle id="licircle" style="stroke: black; fill: #ffffff;" cx="240" cy="130" r="100" />
+            </g>
+            <g class="righteye">
+                <circle id="rocircle" style="stroke: black; fill: #000000;" cx="430" cy="130" r="50" />
+                <circle id="ricircle" style="stroke: black; fill: #ffffff;" cx="430" cy="130" r="40" />
+            </g>
+
+            <g class="hands">
+                <line x1="240" y1="130" x2="240" y2="185" style="stroke-width: 10px; stroke: black;" id="hour"/>
+                <line x1="240" y1="130" x2="240" y2="45" style="stroke-width: 10px; stroke: black;" id="minute"/>
+                <line x1="240" y1="130" x2="335" y2="130"  style="stroke-width: 1px; stroke: black;" id="second"/>
+                <circle style="stroke: white; fill: #ffffff;" cx="240" cy="130" r="10" />
+                <circle style="stroke: black; fill: #000000;" cx="240" cy="130" r="5" />
+            </g>
+            <path d="M350.195,320.114c-40.65,61.789-148.78,38.211-148.78,38.211c-70.731-21.139-57.724-66.667-57.724-66.667
+	c30.081-45.528,56.911-10.569,56.911-10.569c4.879,9.756-4.879,9.756-4.879,9.756c-30.082-14.634-24.39,8.943-24.39,8.943
+	c25.203,38.211,86.991-17.073,86.991-17.073c60.162-41.463,93.173,7.784,93.173,7.784l3.627-2.906c0,0,30.082-46.341,90.244-4.878
+	c0,0,61.787,55.285,86.99,17.073c0,0,5.693-23.577-24.389-8.943c0,0-9.758,0-4.879-9.756c0,0,26.83-34.958,56.91,10.569
+	c0,0,13.008,45.528-57.723,66.667c0,0-108.131,23.578-148.781-38.211"/>
+        </svg>
+    </div>
+
+    <hr>
+
+    <div class="footer">
+        <p>&copy; estcequecestlheureduthe.fr 2013</p>
+    </div>
+
+</div>
+<script data-main="js/main" src="js/require.js"></script>
+</body>
+</html>
