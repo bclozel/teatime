@@ -48,17 +48,18 @@ define(["moment"],
                 }
             });
 
+            moment.lang('fr');
+
         };
 
         var teatimes = [
+            {start:{'hours':6,'minutes':0},end:{'hours':8,'minutes':0},'answer':"Oui.",'message':"Petit déjeuner des champions!"},
             {start:{'hours':8,'minutes':0},end:{'hours':10,'minutes':0},'answer':"Oui.",'message':"Breakfast!"},
-            {start:{'hours':11,'minutes':0},end:{'hours':11,'minutes':30},'answer':"Oui.",'message':"Elevenses"},
-            {start:{'hours':16,'minutes':0},end:{'hours':17,'minutes':0},'answer':"Oui.",'message':"Afternoon"},
-            {start:{'hours':17,'minutes':0},end:{'hours':18,'minutes':0},'answer':"Oui.",'message':"High tea"},
-            {start:{'days':1,'hours':8,'minutes':0},end:{'days':1,'hours':10,'minutes':0},'answer':"Oui.",'message':"Breakfast!"},
+            {start:{'hours':11,'minutes':0},end:{'hours':11,'minutes':30},'answer':"Oui.",'message':"C'est l'heure du <a href='http://en.wikipedia.org/wiki/Elevenses'>Elevenses</a>"},
+            {start:{'hours':16,'minutes':0},end:{'hours':17,'minutes':0},'answer':"Oui.",'message':"C'est l'heure du  <a href='http://en.wikipedia.org/wiki/High_tea#Afternoon_tea_.2F_low_tea'>Afternoon tea</a>"},
+            {start:{'hours':17,'minutes':0},end:{'hours':18,'minutes':0},'answer':"Oui.",'message':"C'est l'heure du <a href='http://en.wikipedia.org/wiki/High_tea#High_tea'>High tea</a>"},
+            {start:{'days':1,'hours':6,'minutes':0},end:{'days':1,'hours':8,'minutes':0},'answer':"Oui.",'message':"Petit déjeuner des champions!"}
         ];
-
-
 
         var isTeatime = function(currentTime) {
 
@@ -69,7 +70,7 @@ define(["moment"],
 
                 if(currentTime.isBefore(dayStart.clone().add(teatime.start).seconds(0))) {
 
-                    result = {isTeaTime:false,next:teatime};
+                    result = {isTeaTime:false,next:teatime,fromNow:dayStart.clone().add(teatime.start).from(currentTime)};
                     return true;
 
                 } else if(currentTime.isBefore(dayStart.clone().add(teatime.end).seconds(0))){
