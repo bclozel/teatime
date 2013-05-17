@@ -30,6 +30,10 @@ define(["moment"],
             var cx = parseInt(document.getElementById("licircle").getAttribute("cx"),10);
             var cy = parseInt(document.getElementById("licircle").getAttribute("cy"),10);
 
+            if(currentTime.seconds == 0) {
+                fireMinuteClockEvent(currentTime);
+            }
+
             // Draw Hands
             drawHand(document.getElementById("second"),
                 currentTime.seconds(),
@@ -54,6 +58,18 @@ define(["moment"],
             }
         };
 
+        var fireMinuteClockEvent = function(time) {
+            var event = new CustomEvent(
+                "minuteClockEvent",
+                {
+                    detail:{time: time}
+                }
+            );
+
+            document.body.dispatchEvent(event);
+
+        };
+
         var start = function() {
             drawClock(moment());
             unpause();
@@ -64,13 +80,21 @@ define(["moment"],
         };
 
         var unpause = function() {
-            interval = window.setInterval(function(){drawClock(moment())}.bind(this),1000);
+            fireMinuteClockEvent(moment());
+            interval = window.setInterval(function(){
+                var time = moment();
+                drawClock(time);
+
+                if(time.seconds == 0) {
+                    fireMinuteClockEvent(time);
+                }
+
+            }.bind(this),1000);
         };
 
         return {
             start: start,
-            pause: pause,
-            unpause: unpause
+            pause: pause
         }
 
     });
