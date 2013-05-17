@@ -1,5 +1,5 @@
-define(["moment","clock"],
-    function(moment,clock) {
+define(["moment","clock","teatime"],
+    function(moment,clock,teatime) {
 
 
         var getHiddenProp = function(){
@@ -28,14 +28,37 @@ define(["moment","clock"],
 
         var visChange = function() {
 
-                if (isHidden()) {
-                    clock.pause();
-                    console.log("clock paused");
-                } else {
-                    clock.unpause();
-                    console.log("clock unpaused");
-                }
+            if (isHidden()) {
+                clock.pause();
+            } else {
+                clock.start();
+            }
         }
+
+        var handleClockEvent = function(event) {
+            updateTeatimeStatus(event.detail.time);
+        };
+
+        var updateTeatimeStatus = function(currentTime) {
+            var answerzone = document.getElementById("answer");
+            var msgzone = document.getElementById("message");
+            var timezone = document.getElementById("remainingtime");
+
+            var result = teatime.isTeaTime(currentTime);
+
+            console.dir(result);
+
+            if(result.isTeaTime) {
+                answerzone.innerText = result.current.answer;
+                msgzone.innerHTML = result.current.message;
+                timezone.innerText = "";
+            } else {
+                answerzone.innerText = "Non";
+                msgzone.innerText = "";
+                timezone.innerHTML = "Prochain thé <strong>" + result.fromNow +"</strong>";
+            }
+
+        };
 
         var init = function() {
 
@@ -46,15 +69,15 @@ define(["moment","clock"],
                 document.addEventListener(evtname, visChange);
             }
 
+            document.body.addEventListener("minuteClockEvent", handleClockEvent, false);
+
             clock.start();
 
         };
 
         return {
-            init:init
-
+            init:init,
+            update: updateTeatimeStatus
         }
-
-
     }
 );
