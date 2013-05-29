@@ -46,8 +46,6 @@ define(["moment","clock","teatime"],
 
             var result = teatime.isTeaTime(currentTime);
 
-            console.dir(result);
-
             if(result.isTeaTime) {
                 answerzone.innerText = result.current.answer;
                 msgzone.innerHTML = result.current.message;
