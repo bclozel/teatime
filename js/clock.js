@@ -30,7 +30,7 @@ define(["moment"],
             var cx = parseInt(document.getElementById("licircle").getAttribute("cx"),10);
             var cy = parseInt(document.getElementById("licircle").getAttribute("cy"),10);
 
-            if(currentTime.seconds == 0) {
+            if(currentTime.seconds() == 0) {
                 fireMinuteClockEvent(currentTime);
             }
 
